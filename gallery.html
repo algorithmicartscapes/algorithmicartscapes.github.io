@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"
+    />
+    <meta name="description" content="Design and Code by Joana Chicau" />
+    <meta
+      name="keywords"
+      content="design, choreography, physical, digital, web, creative coding, choreography"
+    />
+    <meta name="author" content="Joana Chicau" />
+    <title>･ﾟ*:･ﾟ✧</title>
+
+    <style>
+      @font-face {
+        font-family: "Goozette", sans-serif;
+        src: url("fonts/Goozette.otf") format("open-type");
+      }
+      @font-face {
+        font-family: "Goozee", sans-serif;
+        src: url("fonts/Goozeeoutline.otf") format("open-type");
+      }
+
+      :root {
+        --color-bluedark: #170086;
+        --color-graylight: #d9dfff;
+        --color-graydark: #636363;
+        --color-green: #005e48;
+        --color-blue: #441dff;
+        --color-yellow: #fffdd7d4;
+        --color-lightpink: #ffd7fdd4;
+        --color-pink: #d50096;
+        --body-font-B: "Goozee";
+        --body-font-L: "Goozette";
+
+        --title-fontsize: calc(22px + 1.5vw);
+        --body-fontsize: calc(14px + 6 * (100vw - 320px) / 1600);
+        --body-fontsize-s: calc(11px + 6 * (100vw - 320px) / 1600);
+        --bg-fontsize: 30vw;
+        --bgsmall-fontsize: 15vw;
+      }
+
+      body {
+        color: var(--color-bluedark);
+        background: var(--color-yellow);
+      }
+
+      h1.title {
+        font-family: var(--body-font-B);
+        font-size: var(--bgsmall-fontsize);
+        color: var(--color-blue);
+        text-justify: center;
+        position: absolute;
+        z-index: -999;
+        opacity: 0.25;
+        top: 0;
+        left: 0;
+        margin: 0% 5%;
+      }
+
+      #menu {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        justify-content: end;
+        font-family: var(--body-font-L);
+      }
+      #menu a,
+      #menu a:visited {
+        color: var(--color-blue);
+      }
+      #menu a:hover {
+        background-color: var(--color-pink);
+        color: var(--color-lightpink);
+        border-radius: 2rem;
+        text-decoration: none;
+      }
+      .gallery {
+        display: grid;
+        grid-column-gap: 0px;
+        /*   grid-template-columns: 25% 25% 25% 25%;
+          grid-gap: 0.3rem 0.6rem 0.3rem 0.6rem; */
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        margin: 3rem;
+      }
+
+      .gallery a {
+        text-decoration: none !important;
+        color: var(--color-blue);
+        font-family: var(--body-font-L);
+        padding: 0.2rem 0.6rem 0.2rem 0.6rem;
+        margin: 0.5rem;
+        border: 1px solid var(--color-blue);
+        border-radius: 6rem;
+      }
+      .gallery a:hover {
+        color: var(--color-yellow);
+        background-color: var(--color-blue);
+      }
+      /***************** MOBILE ****************/
+
+      @media screen and (min-width: 0px) and (max-width: 768px) {
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="title">Algorithmic Artscape Gallery</h1>
+    <div id="menu">
+      <a href="index.html" id="gallery" title="artscape"> back to artscape ↗ </a>    
+      </div>
+
+    <div class="gallery">
+      <a class="" href="gallery-artist.html">
+        <h2>Benito - Error 404</h2>
+        <img src="" alt="" />
+        <figcaption><sub></sub></figcaption>
+      </a>
+
+      <a class="" href="#">
+        <h2>Luna Valentin</h2>
+        <img src="" alt="" />
+        <figcaption><sub></sub></figcaption>
+      </a>
+
+      <a class="" href="#">
+        <h2>Renee Charmichael</h2>
+        <img src="" alt="" />
+        <figcaption><sub></sub></figcaption>
+      </a>
+
+      <a class="" href="#">
+        <h2>Naoto Hieda</h2>
+        <img src="" alt="" />
+        <figcaption><sub></sub></figcaption>
+      </a>
+
+      <a class="" href="#">
+        <h2>Mike Mulshine</h2>
+        <img src="" alt="" />
+        <figcaption><sub></sub></figcaption>
+      </a>
+
+      <a class="" href="#">
+        <h2>Joseph Wilk</h2>
+        <img src="" alt="" />
+        <figcaption><sub></sub></figcaption>
+      </a>
+
+      <a class="" href="#">
+        <h2>Sejo (Compudanzas)</h2>
+        <img src="" alt="" />
+        <figcaption><sub></sub></figcaption>
+      </a>
+
+      <a class="" href="#">
+        <h2>Semillero CineVivo</h2>
+        <img src="" alt="" />
+        <figcaption><sub></sub></figcaption>
+      </a>
+      <a class="" href="mailto:web@joanachicau.com, essteb@gmail.com">
+        Interested in contributing? <br />
+        Get in touch!
+      </a>
+    </div>
+    <script></script>
+  </body>
+</html>

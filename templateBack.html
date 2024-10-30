@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<!-- parser generator -->
+<script src="./resources/peg-0.10.0.min.js"></script>
+<!-- trivial integration with Hydra-->
+<script src="https://unpkg.com/hydra-synth"></script>
+
+<!-- trivial integration with chuck -->
+<script type="module" defer>
+
+// import engine
+import { Chuck } from 'https://cdn.jsdelivr.net/npm/webchuck/+esm';
+
+// files to be preloaded
+
+// var serverFilesToPreload = [
+//     {
+//         serverFilename: './resources/glove-wiki-gigaword-50.txt',
+//         virtualFilename: '50dimentions.txt'
+//     },
+//     {
+//         serverFilename: './resources/glove-wiki-gigaword-50-pca-3.txt',
+//         virtualFilename: '3dimentions.txt'
+//     },
+//     {
+//         serverFilename: './resources/glove-wiki-gigaword-50-tsne-2.txt',
+//         virtualFilename: '2dimentions.txt'
+//     }
+// ]
+
+
+// default initialization with files to preload (words database)
+document.getElementById('initChuck').addEventListener('click', async () => {
+    console.log(url)
+    //window.theChuck ??= await Chuck.init(serverFilesToPreload);
+    window.theChuck ??= await Chuck.init([]);
+    theChuck.runCode(`
+        <<< "your chuck is alive" >>>;
+    `)
+})
+
+</script>
+</head>
+
+<body>
+
+<!-- set the canvas to background and textbox as a child od the hydrabox -->
+<script>
+      // create a new hydra-synth instance
+      var hydra = new Hydra({ detectAudio: false })
+      console.log("your hydra is alive");
+      console.log(hydra);
+      osc(4, 0.1, 1.2).out()
+</script>
+
+<!-- audio context needs interaction with the page, maybe add this as a welcome button?-->
+<button id="initChuck" >Enable Audio</button>
+
+<!-- uploading audio files -->
+<h1>Upload a File</h1>
+
+    <form id="uploadForm">
+        <label for="fileInput">Choose a file:</label>
+        <input type="file" id="fileInput" name="file" required accept=".wav, .aiff">
+        <button type="submit">Upload</button>
+    </form>
+
+    <!-- script to upload all the files to the virtual system -->
+    <script>
+
+      const form = document.getElementById('uploadForm');
+      form.addEventListener('submit', handleSubmit);
+
+      function handleSubmit(input) {
+
+        event.preventDefault();
+        const file = document.getElementById('fileInput').files[0];
+        const name = file.name
+        const reader = new FileReader();
+
+        if (file) {
+            reader.readAsArrayBuffer(file);
+            reader.onload = (fileReaderEvent) => {
+
+            theChuck.createFile("",name,new Uint8Array(fileReaderEvent.srcElement.result))
+          }
+        }
+      }
+
+    </script>
+
+</body>
+</html>

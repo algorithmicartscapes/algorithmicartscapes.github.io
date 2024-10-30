@@ -1,0 +1,1047 @@
+<!doctype html>
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"
+    />
+    <meta name="description" content="Design and Code by Joana Chicau" />
+    <meta
+      name="keywords"
+      content="design, choreography, physical, digital, web, creative coding, choreography"
+    />
+    <meta name="author" content="Joana Chicau" />
+    <title>･ﾟ*:･ﾟ✧</title>
+
+    <!-- trivial integration with Hydra-->
+    <script src="https://unpkg.com/hydra-synth"></script>
+    <!-- parser generator for little languages-->
+    <script src="./resources/peg-0.10.0.min.js"></script>
+<!-- trivial integration with chuck -->
+<script type="module" defer>
+
+  // import engine
+  import { Chuck } from 'https://cdn.jsdelivr.net/npm/webchuck/+esm';
+  
+  // preload the word database (it's big)
+  var serverFilesToPreload = [
+      {
+          serverFilename: './resources/glove-wiki-gigaword-50-tsne-2.txt',
+          virtualFilename: '2dimentions.txt'
+      },
+      {
+          serverFilename: './resources/grain.ck',
+          virtualFilename: 'grain.ck'
+      },
+      {
+          serverFilename: './resources/cq.ck',
+          virtualFilename: 'cq.ck'
+      },
+      {
+          serverFilename: './resources/word2vec.ck',
+          virtualFilename: 'word2vec.ck'
+      },
+      {
+          serverFilename: './resources/train.ck',
+          virtualFilename: 'train.ck'
+      },
+      {
+          serverFilename: './resources/mosaic-synth-mic.ck',
+          virtualFilename: 'mosaic-synth-mic.ck'
+      },
+      {
+          serverFilename: './resources/twilight-granular.wav',
+          virtualFilename: 'twilight-granular.wav'
+      },
+      {
+          serverFilename: './resources/felt-main.wav',
+          virtualFilename: 'felt-main.wav'
+      },
+      {
+          serverFilename: './resources/felt-texture.wav',
+          virtualFilename: 'felt-texture.wav'
+      },
+      {
+          serverFilename: './resources/felt.txt',
+          virtualFilename: 'felt.txt'
+      }
+  ]
+  
+  // default initialization with files to preload (words database)
+  // TODO: add the input for the user word and re implement the word cloud (done in arlgorithmic artscapes1)
+  // TODO: can train be done in silent and then switch to audio to execute?
+  document.getElementById('kickoff').addEventListener('click', async () => {
+      window.theChuck ??= await Chuck.init(serverFilesToPreload);
+      theChuck.runCode(`
+          Machine.add(me.dir()+"word2vec.ck");
+          //Machine.add(me.dir()+"train.ck");
+          Machine.add(me.dir()+"cq.ck");
+
+          <<< "CQenze is ready" >>>;
+      `)
+  })
+  
+  </script>
+
+    <style>
+      @font-face {
+        font-family: "Goozette", sans-serif;
+        src: url("fonts/Goozette.otf") format("open-type");
+      }
+      @font-face {
+        font-family: "Goozee", sans-serif;
+        src: url("fonts/Goozeeoutline.otf") format("open-type");
+      }
+      @font-face {
+        font-family: "Gudea", sans-serif;
+        src: url("fonts/Gudea-Regular.ttf") format("truetype");
+      }
+      :root {
+        --color-bluedark: #170086;
+        --color-graylight: #d9dfff;
+        --color-graydark: #636363;
+        --color-green: #005e48;
+        --color-blue: #441dff;
+        --color-yellow: #fffdd7d4;
+        --color-lightpink: #ffd7fdd4;
+        --color-pink: #d50096;
+        --body-font-B: "Goozee";
+        --body-font-L: "Goozette";
+        --body-font-T: "Gudea";
+
+        --title-fontsize: calc(22px + 1.5vw);
+        --body-fontsize: calc(14px + 6 * (100vw - 320px) / 1600);
+        --body-fontsize-s: calc(11px + 6 * (100vw - 320px) / 1600);
+        --bg-fontsize: 30vw;
+      }
+
+      body {
+        color: var(--color-bluedark);
+        background: var(--color-graylight);
+      }
+
+      h1.title {
+        font-family: var(--body-font-B);
+        font-size: var(--bg-fontsize);
+        color: var(--color-yellow);
+        text-justify: center;
+        position: absolute;
+        z-index: -999;
+        opacity: 0.35;
+        top: 0;
+        left: 0;
+        margin: 0% 5%;
+      }
+
+      .newScore {
+        border:0px;
+        background-color: var(--color-blue);
+        color: var(--color-graylight);
+        font-size: var(--body-fontsize-s);
+        width:6rem;
+      }
+
+      #menu {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        justify-content: end;
+        align-items: center;
+      }
+
+      #menu button {
+        border-radius: 6rem;
+        background: var(--color-blue);
+        border: 1px solid var(--color-blue);
+        color: var(--color-lightpink);
+        margin: 0rem 1rem;
+        padding: 0.35rem 0.5rem;
+      }
+      .active {
+        background: var(--color-lightpink) !important;
+        border: 1px solid var(--color-lightpink);
+        color: var(--color-blue) !important;
+      }
+      a#gallery, a#about {
+        border-radius: 6rem;
+        background: var(--color-yellow);
+        border: 2px solid var(--color-yellow);
+        color: var(--color-blue);
+        margin: 0rem 1rem;
+        padding: 0rem 0.2rem;
+        text-decoration: none;
+      }
+      a#gallery:hover, a#about:hover {
+        border: 2px solid var(--color-blue);
+      }
+      .box {
+        width: max-content;
+        height: max-content;
+        margin: 2rem 1rem;
+        padding: 1rem;
+        border-radius: 6rem;
+        border: 1px solid var(--color-blue);
+      }
+      .box:hover{
+          background-color: var(--color-graylight);
+      }
+      .box h2 {
+        font-family: var(--body-font-B);
+        color: var(--color-blue);
+        width: max-content;
+      }
+      .allboxes {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+      }
+       .allboxes p, .allboxes label {
+        font-family: var(--body-font-T);
+      }
+      .allboxes button {
+          margin: 0.25rem 0rem;
+      }
+      input{
+        width: 100%;
+        height: 2rem;
+       }
+     textarea, input{
+        border-radius: 1rem;
+        border: 0.09rem solid var(--color-blue);
+      }     
+     textarea{
+        border-radius: 1rem;
+        border: 0.09rem solid var(--color-blue);
+      }
+      #hydraCanvas{
+        border-radius: 1rem;
+      }
+      .toggleDiv {
+        display: none; /* wnsure divs are initially hidden */
+      }
+      p#shortPrompts {
+        font-family: var(--body-font-B);
+        font-size: var(--title-fontsize);
+        width: max-content;
+        color: var(--color-pink);
+      }
+      div.prompts {
+        font-family: var(--body-font-B);
+        padding: 2rem;
+        color: var(--color-pink);
+      }
+      p#choreoPrompts {
+        font-size: var(--title-fontsize);
+        width: max-content;
+        overflow: hidden; /* Ensures the content is not revealed until the animation */
+        border-right: 0.15em solid var(--color-lightpink); /* The typwriter cursor */
+        white-space: nowrap; /* Keeps the content on a single line */
+        margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+        letter-spacing: 0.15em; /* Adjust as needed */
+        animation:
+          typing 3.5s steps(30, end),
+          blink-caret 0.5s step-end infinite;
+      }
+
+      /* The typing effect */
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      /* The typewriter cursor effect */
+      @keyframes blink-caret {
+        from,
+        to {
+          border-color: transparent;
+        }
+        50% {
+          border-color: var(--color-lightpink);
+        }
+      }
+      p.colophon {
+        font-family: var(--body-font-L);
+        font-size: var(--body-fontsize-s);
+      }
+      p.colophon a {
+        font-family: var(--body-font-B);
+        font-size: var(--body-fontsize-s);
+        color: var(--color-lightpink);
+      }
+      p.colophon a:hover {
+        background-color: var(--color-lightpink);
+        color: var(--color-blue);
+        border-radius: 1rem ;
+        text-decoration: none;
+      }
+      button {
+        font-family: var(--body-font-B);
+        font-size: var(--body-fontsize);
+        font-weight: bold;
+        padding: 1rem;
+        border-radius: 6rem;
+        border: 1px solid var(--color-blue);
+        color: var(--color-blue);
+        background: transparent;
+        cursor: grab;
+      }
+
+      #choreoPromptsButton {
+        margin: 5% 5%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        animation: blink 2s infinite alternate;
+        -webkit-animation: blink 2s infinite alternate;
+      }
+
+      @keyframes blink {
+        0% {
+          box-shadow: 0.5px 0.5px 0.5px var(--color-lightpink);
+        }
+        100% {
+          box-shadow: inset 1.5px 1.5px 30px var(--color-lightpink);
+        }
+      }
+
+      button#choreoPromptsButton:hover {
+        animation: none;
+        box-shadow: inset 5px 5px 5px var(--color-lightpink);
+      }
+
+      #choreoUserButton {
+        width: 50%;
+      }
+
+      .quickPrompts {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+      }
+
+      #wordsRandom p {
+        position: absolute;
+        font-family: var(--body-font-L);
+        width: max-content;
+        color: var(--color-pink);
+      }
+      #overlay {
+          position: absolute;
+          z-index: 999;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          opacity: 1;
+          background-color:var(--color-blue);
+          color: var(--color-lightpink);
+      }
+      .bye{
+        animation: bye 2s forwards;
+        -o-animation: bye 2s forwards;
+        -moz-animation: bye 2s forwards;
+        -webkit-animation: bye 2s forwards;
+        animation-iteration-count: 1;
+        z-index: -1 !important;
+         pointer-events: none;
+      }
+      @keyframes bye {
+        0% {
+          opacity: 1;
+        }
+        90%, 100% {
+          opacity: 0;
+          display: none;
+        }
+      }
+      @-webkit-keyframes bye {
+        0% {
+          opacity: 1;
+        }
+        90%, 100% {
+          opacity: 0;
+          display: none;
+        }
+      }
+      #overlay h3 {
+        font-family: var(--body-font-L);
+      }
+      #overlay p {
+          font-family: var(--body-font-T);
+      }
+      #overlay ul {
+          font-family: var(--body-font-T);
+          list-style-type: "♪♫♬ ";
+      }
+      #overlay button {
+        border: 1px solid var(--color-lightpink);
+        color: var(--color-lightpink);
+        background: transparent;
+      }
+      #overlay button:hover {
+        color: var(--color-blue);
+        background-color: var(--color-lightpink);
+      }
+      /***************** MOBILE ****************/
+
+      @media screen and (min-width: 0px) and (max-width: 768px) {
+      }
+    </style>
+  </head>
+  <body onload="readCache()">
+
+    <div id="overlay">
+      <h3>Welcome to ☆⌒ Algorithmic Artscapes ｡･:*:･ﾟ’★</h3>
+      <p>For a smooth experience, please follow the steps:</p>
+        <ul>
+          <li>Use a recent version of Firefox or Chrome in a medium or large screen device;</li>
+          <li>Allow audio and iframe display in your browser settings;</li>
+          <li>Important: <b>nothing is saved or tracked by default!</b> Once you close the browser tab it's all gone, embrace ephemereality or document your audio-visual compositions using an external tool of your choice;</li>
+        </ul>
+
+        <button style="margin: 10% 0%; display: inherit;" class="" id="kickoff" type="button" onclick="showStarts()">READY? LET'S DANCE!</button>
+
+        <p class="colophon">
+              Algorithmic Artscape: a Platform for Exploring Distributed Community
+              Creativity is a project by
+          <a href="https://www.celestebetancur.com/" target="_blank"
+                >Celeste Betancur</a
+              >; and
+          <a href="https://joanachicau.com/" target="_blank">Joana Chicau</a>;
+              developed during
+          <a
+                href="https://tekhne.website/events/2024/celeste-betancur-joana-chicau.html"
+                target="_blank"
+                >Tekhne online residency (2024)
+          </a>
+              in collaboration with Q-O2 workspace and Trafo gallery.
+      </p>
+    </div>
+
+
+    <h1 class="title">Algorithmic Artscape</h1>
+
+    <div id="menu">
+        <button id="btn0" onclick="toggleVisibility('div0', 'btn0')">
+        ⏵ ⏽⏽
+      </button>
+      <button id="btn1" onclick="toggleVisibility('div1', 'btn1')">
+        murmurings
+      </button>
+      <button id="btn2" onclick="toggleVisibility('div2', 'btn2')">
+        clouds & grains
+      </button>
+      <button id="btn3" onclick="toggleVisibility('div3', 'btn3')">
+        mosaic AI
+      </button>
+      <button id="btn4" onclick="toggleVisibility('div4', 'btn4')">
+        CQenze
+      </button>
+      <button id="btn5" onclick="toggleVisibility('div5', 'btn5')">
+        Hydra
+      </button>
+      <!-- <button
+        id="btn6"
+        onclick="toggleVisibility('div6', 'btn6')"
+        title="record audio"
+      >
+        ◉
+      </button> -->
+      <button
+        id="btn7"
+        onclick="toggleVisibility('div7', 'btn7')"
+        title="upload sound and image"
+      >
+        ↥
+      </button>
+      <a href="about.html" id="about" title="about" target="_blank"> ¿? </a>
+      <a href="gallery.html" id="gallery" title="artists gallery!" target="_blank"> ↗ </a>
+    </div>
+
+    <button id="longPromptsButton">new score = () =></button>
+
+    <div class="prompts">
+      <p id="choreoPrompts">start with a gesture...</p>
+    </div>
+
+    <div class="quickPrompts">
+      <p id="shortPrompts">BEGIN!</p>
+    </div>
+
+    <div id="wordsRandom" class="randomPrompts">
+      <p class="wordMaps">extra smooth</p>
+      <p class="wordMaps">grayscale</p>
+      <p class="wordMaps">gradient</p>
+      <p class="wordMaps">pastel vibes</p>
+      <p class="wordMaps">celestial sea</p>
+    </div>
+
+    <div class="allboxes">
+      <div id="div0" class="toggleDiv box">
+        <h2>Overview </h2>
+        <label for="opacitySlider">Reduce opacity of visual elements:</label>
+        <input type="range" id="opacitySlider" min="0" max="100" value="100">
+        <p>Reduce volume of audio elements:</p>
+        <!-- ADD cotrol buttons or sliders for audio components  -->
+        <button id="" onclick="">Clear Browser Cache</button>
+        <!-- connect script to button clear cache -->
+      </div>
+
+      <div id="div1" class="toggleDiv box">
+          <h2>Murmurings</h2>
+          <p>Create a new set of words by typing a word and number, sepparated by comma <i>(e.g. 'magic, 10')</i>:</p>
+          <input id="cloudWord" class="" placeholder="type a word, number of words"></input>
+          <button id="cloudWordTrigger" onclick="">Generate</button>
+          <label for="fontSizeSlider">Adjust Font Size:</label>
+          <input type="range" id="fontSizeSlider" min="10" max="50" value="16">
+      </div>
+
+      <div id="div2" class="toggleDiv box">
+        <h2>clouds & grains</h2>
+        <input type="text" id="sampleGrains" placeholder="sample.wav">
+        <button id="startGrains" onclick="granuralizer()">+</button>
+        <button id="removeGrains">-</button>
+        <label for="play rate">play rate</label>
+        <input id="play rate" type="range" min="0" max="200" value="100" />
+        <label for="position">position</label>
+        <input id="position" type="range" min="0" max="100" value="50" />
+        <label for="length">length</label>
+        <input id="length" type="range" min="0" max="100" value="50" />
+        <label for="goal">pos goal</label>
+        <input id="goal" type="range" min="0" max="100" value="50" />
+        <label for="random">random</label>
+        <input id="random" type="range" min="0" max="100" value="50" />
+        <label for="reverb">reverb</label>
+        <input id="reverb" type="range" min="1" max="100" value="50" />
+        <label for="volumeGrain">volume</label>
+        <input id="volumeGrain" type="range" min="1" max="100" value="50" />
+      </div>
+
+      <div id="div3" class="toggleDiv box">
+        <h2>mosaic AI</h2>
+        <!-- <button id="train">train model</button> -->
+        <button id="runMosaic">run model</button>
+        <label for="textureMosaic">texture</label>
+        <input id="textureMosaic" type="range" min="1" max="100" value="50" />
+        <label for="expressionMosaic">expression</label>
+        <input id="expressionMosaic" type="range" min="1" max="100" value="50" />
+        <label for="volumeMosaic">volume</label>
+        <input id="volumeMosaic" type="range" min="1" max="100" value="50" />
+      </div>
+
+      <div id="div4" class="toggleDiv box">
+        <h2>CQenze</h2>
+        <button id="startCQenze">+</button>
+        <button id="removeCQenze">-</button>
+        <button id="replaceCQenze">=</button>
+        <textarea id="cqenzeCode" name="cqenze" rows="5" cols="20" onchange="localStorage['cqenzeStore'] = textA.value;"
+        autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+      </div>
+
+      <div id="div5" class="toggleDiv box">
+        <h2>HYDRA BOX</h2>
+        <!-- canvas for hydra preview -->
+        <canvas class="hydraCnvs" id="hydraCanvas" width="200" height="100"></canvas>
+        <textarea id="hydraCode" name="hydra" rows="5" cols="20" onchange="localStorage['hydraStore'] = code.value;"
+        autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+        <button id="toggleButtonWidth" onclick="toggleWidth()">Background</button>
+        </div>
+      
+        <div id="div6" class="toggleDiv box">
+          <h2>Record Audio</h2>
+          <div class="clip">
+            <audio controls></audio>
+            <p>Recording Name</p>
+            <button>Delete</button>
+            <button onclick="" type="button">Play Recorded Audio</button>
+            <button onclick="" type="button">Pause Recorded</button>
+          </div>
+        </div>
+
+      <div id="div7" class="toggleDiv box">
+        <h2>Upload Audio or Image Files</h2>
+
+          <form id="uploadForm">
+            <label for="fileInput">Choose a file:</label>
+            <input type="file" id="fileInput" name="file" required accept=".wav, .aiff, image/x-png ,image/jpeg">
+            <button type="submit">Upload</button>
+        </form>
+        <ul id="fileList"></ul>
+      </div>
+
+    </div>
+
+    <script>
+      var textarray = [
+        "...create an encounter with...",
+        "...predict your next movement. Then, don't do it.",
+        "...slow down, as if paused.",
+        "...change the tempo, twice.",
+        "...increase the space in between",
+        "...substitute for another gesture... ",
+        "...hold, then scale it down",
+        "...retrain your muscle memory.",
+        "...(as) if done by a machine, else...",
+        "...turn, take a different direction...",
+        "...freeze a paradoxical thought",
+        "...shift the attention towards something else",
+        "...the sound of reconnecting with...",
+        "...prolong a sensation until it takes you somewhere",
+        "...imagine exploring another universe",
+        "...move towards other relations with things",
+        "...witness your own process, then let it go...",
+        "...leave a question unanswered...",
+        "...create a new vocabulary...",
+        "...overflow the edges...",
+        "...transform a gesture...",
+        "...feel the tension and release it.",
+      ];
+
+      var text = [
+        // action clicking
+        "PAUSE",
+        "MOVE",
+        "REPLACE",
+        "REVERSE",
+        "STRETCH",
+        "REPEAT",
+        "BREATHE",
+      ];
+
+      var promptEl = document.querySelector("#choreoPrompts");
+      var promptS = document.querySelector("#shortPrompts");
+      var buttonEl = document.querySelector("#longPromptsButton");
+      var buttonS = document.querySelector("#shortPromptsButton");
+
+      function chanceOperations() {
+        var rand = Math.floor(Math.random() * textarray.length);
+        var rando = Math.floor(Math.random() * text.length);
+        promptEl.innerHTML = textarray[rand];
+        promptS.innerHTML = text[rando];
+      }
+
+      function choreoPrompt() {
+        buttonEl.addEventListener("click", function () {
+          chanceOperations();
+        });
+      }
+      choreoPrompt();
+
+      function random() {
+        var sec = document.querySelectorAll(".wordMaps"),
+          i;
+        for (i = 0; i < sec.length; ++i) {
+          var l = Math.floor(Math.random() * 150) + 1;
+          var t = Math.floor(Math.random() * 95) + 1;
+          sec[i].style.left = l + "vw";
+          sec[i].style.top = t + "vh";
+          sec[i].style.transition = "all 1s ease-out";
+        }
+      }
+      random();
+
+      // function to toggle visibility for menu elements
+      function toggleVisibility(elementId, buttonId) {
+        const element = document.getElementById(elementId);
+        const but = document.getElementById(buttonId);
+
+        const computedStyle = window.getComputedStyle(element);
+        if (computedStyle.display === "none") {
+          element.style.display = "flex"; // show the element
+          element.style.flexDirection = "column";
+          but.classList.add("active");
+        } else {
+          element.style.display = "none"; // hide the element
+          but.classList.remove("active");
+        }
+      }
+
+      // function to toggle Hydra fullscreen
+      function toggleWidth() {
+        const div = document.getElementById('hydraCanvas');
+        const button = document.getElementById('toggleButtonWidth');
+
+        // toggle the width between full and initial
+        if (div.style.width === '100%') {
+          div.style.width = '200px'; // style initial width
+          div.style.position = 'initial';
+          div.style.zIndex = 'auto';
+          button.textContent = 'Background';
+        } else {
+          div.style.width = '100%'; // style full width
+          div.style.position = 'absolute';
+          div.style.height = '100%';
+          div.style.top = '0';
+          div.style.left = '0';
+          div.style.zIndex = '-9999';
+          button.textContent = 'Tiny';
+        }
+      }
+
+      function showStarts() {
+        var element = document.getElementById("overlay");
+        element.classList.toggle("bye");
+      }
+
+
+        // WORDS RESIZE
+        const fontSizeSlider = document.getElementById('fontSizeSlider');
+        const wordsDiv = document.getElementById('wordsRandom');
+
+        fontSizeSlider.addEventListener('input', function() {
+          const fontSize = fontSizeSlider.value + 'px';
+          wordsDiv.style.fontSize = fontSize;
+        });
+
+        // OPACITY SLIDER
+        const opacitySlider = document.getElementById('opacitySlider');
+        const boxes = document.querySelectorAll('.prompts, .quickPrompts, .randomPrompts, .hydraCnvs');
+
+        opacitySlider.addEventListener('input', function() {
+          const opacity = opacitySlider.value / 100; 
+          boxes.forEach(box => {
+            box.style.opacity = opacity;
+          });
+        });
+    </script>
+    <script>
+
+      // create a new hydra-synth instance
+      var hydra = new Hydra({ detectAudio: false, canvas: document.getElementById("hydraCanvas") })
+      //console.log("your hydra is alive");
+      //console.log(hydra);
+      s0.initCam()
+      src(s0)
+      .scrollX(0, 0.1)
+      .out()
+
+      const code = document.getElementById("hydraCode")
+      code.addEventListener("dblclick", evalHydra);
+
+      function evalHydra(){
+        eval(code.value)
+      }
+
+    </script>
+
+    <!--script to interact with the word cloud-->
+    <script>
+      
+      const words = ["","","","","","","","","","","","","","","","","","","",""];
+      let  keyword = ""
+
+      function choreoPrompt() {
+          theChuck.getString("w0").then( function(val) {
+            words[0] = val;
+          });
+          theChuck.getString("w1").then( function(val) {
+            words[1] = val;
+          });
+          theChuck.getString("w2").then( function(val) {
+            words[2] = val;
+          });
+          theChuck.getString("w3").then( function(val) {
+            words[3] = val;
+          });
+          theChuck.getString("w4").then( function(val) {
+            words[4] = val;
+          });
+          theChuck.getString("w5").then( function(val) {
+            words[5] = val;
+          });
+          theChuck.getString("w6").then( function(val) {
+            words[6] = val;
+          });
+          theChuck.getString("w7").then( function(val) {
+            words[7] = val;
+          });
+          theChuck.getString("w8").then( function(val) {
+            words[8] = val;
+          });
+          theChuck.getString("w9").then( function(val) {
+            words[9] = val;
+          });
+          theChuck.getString("w10").then( function(val) {
+            words[10] = val;
+          });
+          theChuck.getString("w11").then( function(val) {
+            words[11] = val;
+          });
+          theChuck.getString("w12").then( function(val) {
+            words[12] = val;
+          });
+          theChuck.getString("w13").then( function(val) {
+            words[13] = val;
+          });
+          theChuck.getString("w14").then( function(val) {
+            words[14] = val;
+          });
+          theChuck.getString("w15").then( function(val) {
+            words[15] = val;
+          });
+          theChuck.getString("w16").then( function(val) {
+            words[16] = val;
+          });
+          theChuck.getString("w17").then( function(val) {
+            words[17] = val;
+          });
+          theChuck.getString("w18").then( function(val) {
+            words[18] = val;
+          });
+          theChuck.getString("w19").then( function(val) {
+            words[19] = val;
+          });
+      }
+
+      var cloudWordTrigger = document.getElementById( "cloudWordTrigger" )
+
+      cloudWordTrigger.addEventListener( "click", function(e) {
+
+        var sec = document.querySelectorAll(".wordMaps"); 
+        
+        for (i = 0; i < sec.length; ++i){
+          sec[i].remove()
+        }
+
+        var cloudWord = document.getElementById("cloudWord").value
+        var fields = cloudWord.split(',');
+        var word = fields[0]
+        var numberOfWords = parseInt(fields[1])
+
+        theChuck.setString("keyword",word)
+        choreoPrompt()
+        theChuck.broadcastEvent("newScore")
+        
+        for (i = 0; i < numberOfWords; ++i) {
+          const node = document.createElement("p");
+          node.classList.add("wordMaps")
+          node.id = "w"+i
+          const textnode = document.createTextNode(words[i]);
+          node.appendChild(textnode);
+          wordsDiv.appendChild(node);
+        }
+        random();
+      });
+
+      // <p class="wordMaps">extra smooth</p>
+      
+    </script>
+
+    <!-- run Mosaic -->
+    <script>
+      var runMosaic = document.getElementById("runMosaic")
+      runMosaic.addEventListener( "click", function(e) {
+        theChuck.runCode(`
+          Machine.add(me.dir()+"mosaic-synth-mic.ck");
+        `);
+      }); 
+
+      var textureMosaic = document.getElementById( "textureMosaic" )
+      textureMosaic.addEventListener( "click", function(e) {
+        theChuck.setFloat("TEXTURE",textureMosaic.value/100.0)
+      });
+      var expressionMosaic = document.getElementById( "expressionMosaic" )
+      expressionMosaic.addEventListener( "click", function(e) {
+        theChuck.setFloat("CONTROL",expressionMosaic.value/100.0)
+      });
+      var volumeMosaic = document.getElementById( "volumeMosaic" )
+      volumeMosaic.addEventListener( "click", function(e) {
+        theChuck.setFloat("VOLUME",volumeMosaic.value/100.0)
+      });
+
+    </script>
+
+    <!--Script to connect the GUI to clouds & grains-->
+    <script>
+      
+      function granuralizer(){
+        var sampleName = document.getElementById( "sampleGrains" ).value
+        var codeToRun = 'Machine.add(me.dir()+"grain.ck:'+sampleName+'");'
+        theChuck.runCode(codeToRun)
+      }
+
+      var removeGrains = document.getElementById( "removeGrains" )
+      removeGrains.addEventListener( "click", function(e) {
+        //TODO
+      });
+
+      var rateGrain = document.getElementById( "play rate" )
+      rateGrain.addEventListener( "click", function(e) {
+        theChuck.setFloat("GRAIN_PLAY_RATE",rateGrain.value/100.0)
+      });
+
+      var positionGrain = document.getElementById( "position" )
+      positionGrain.addEventListener( "click", function(e) {
+        theChuck.setFloat("GRAIN_POSITION",positionGrain.value/100.0)
+      });
+
+      var posGoal = document.getElementById( "goal" )
+      posGoal.addEventListener( "click", function(e) {
+        theChuck.setFloat("GRAIN_POSITION_GOAL",posGoal.value/100.0)
+      });
+
+      var randomPos = document.getElementById( "random" )
+      randomPos.addEventListener( "click", function(e) {
+        theChuck.setFloat("GRAIN_POSITION_RANDOM",0.00001 + randomPos.value/100.0)
+      });
+
+      var reverbGrain = document.getElementById( "reverb" )
+      reverbGrain.addEventListener( "click", function(e) {
+        theChuck.setFloat("REVERB_MIX",reverbGrain.value/100.0)
+      });
+
+      var volumeGrain = document.getElementById( "volumeGrain" )
+      volumeGrain.addEventListener( "click", function(e) {
+        theChuck.setFloat("MAIN_VOLUME",volumeGrain.value/100.0)
+      });
+
+      
+
+    </script>
+    <script>
+
+    var textA = document.getElementById( "cqenzeCode" )
+
+    function updateText(){return textA.value}
+    function updateCode(){return chuckCodeHeader + parser.parse(updateText())  + footer}
+
+    var parser = peg.generate(`
+    main = x:allRules* { return  x.join("") }
+    allRules = word / onI / offI / new / rest
+
+    rest = .
+    word "sample"
+      = [a-zA-Z0-9_]+ { return "spork~play(" + '"' + text() + '"' + ",[" }
+      
+    onI = "+" { return "1," }
+    offI = "-" { return "0," }
+    new = ";" {return "0]);"}
+    `
+    );
+  
+    var chuckCodeHeader = `
+1::second => dur T;
+T - (now % T) => now;
+
+global float seconds;
+
+1.0 => seconds;
+
+function void play(string sample, int notes[]){
+    
+  SndBuf buf => dac;
+  seconds/(notes.cap()-1) => float d;
+  sample + ".wav" => buf.read;
+	    
+  while( true )
+  {
+	  for(0 => int i; i  < (notes.cap()-1); i++){
+	    if(notes[i] == 1){
+	      0 => buf.pos;
+	      d::T => now;
+	    }
+	    if(notes[i] == 0){
+	      d::T => now;
+	    }
+	  }
+  }
+}
+`;
+
+    var footer =  "\n week => now;"
+    
+    var startButton = document.getElementById( "startCQenze" );
+    var removeButton = document.getElementById( "removeCQenze" );
+    var replaceButton = document.getElementById( "replaceCQenze" );
+
+    startButton.addEventListener( "click", async function() {
+      theChuck.runCode(updateCode());
+    });
+    removeButton.addEventListener( "click", async function() {
+      theChuck.removeLastCode();
+    });
+    replaceButton.addEventListener( "click", async function() {
+      theChuck.replaceCode(updateCode());
+    });
+    </script>
+
+    <!-- script to upload all the files to the virtual system -->
+    <script>
+        // Virtual filesnames are being stored here
+        const names = []
+        const images = {}
+        const form = document.getElementById('uploadForm');
+        form.addEventListener('submit', handleSubmit);
+    
+        function handleSubmit(input) {
+    
+          event.preventDefault();
+          const inputFileTag = document.getElementById('fileInput')
+          const file = inputFileTag.files[0];
+          const name = file.name
+          const reader = new FileReader();
+    
+          if (file) {
+            if(name.slice(-3) === "wav" || name.slice(-3) === "WAV"){
+                reader.readAsArrayBuffer(file);
+              }
+            if(name.slice(-3) === "jpg" || name.slice(-3) === "png"){
+              reader.readAsDataURL(file)
+            }
+            reader.onload = (fileReaderEvent) => {
+    
+            var counter = 0
+            for (var i = 0; i < names.length; i++) {
+              if(name !== names[i]){
+                counter++;
+              }
+            }
+            if(counter === names.length){
+              var nameTemp = name.slice(0,name.length-4)
+              if(name.slice(-3) === "wav" || name.slice(-3) === "WAV"){
+                theChuck.createFile("",nameTemp+".wav",new Uint8Array(fileReaderEvent.srcElement.result))
+                names.push(name)
+              }
+              if(name.slice(-3) === "jpg" || name.slice(-3) === "png"){
+                objectName = name;
+                images[objectName] = fileReaderEvent.target.result
+                names.push('images["'+name+'"]')
+              }
+              console.log("file: " +nameTemp+ " created in the virtual system")
+              names.push(name)
+              const node = document.createElement("li");
+              const textnode = document.createTextNode(names[i]);
+              node.appendChild(textnode);
+              ulHolder.appendChild(node);
+              inputFileTag.value = ""
+            } else {
+              inputFileTag.value = ""
+            }
+          }
+        }
+      }
+
+      const ulHolder = document.getElementById('fileList')
+    </script>
+
+    <!--I added some cacheing in case of accidents, the audio is not stored though-->
+    <script>
+      function readCache(){
+        code.value = localStorage['hydraStore'] || '//type hydra code here' + 's0.initCam() src(s0) .scrollX(0, 0.1) .out()';
+        textA.value = localStorage['cqenzeStore'] || '';
+      }
+    </script>
+  </body>
+</html>
