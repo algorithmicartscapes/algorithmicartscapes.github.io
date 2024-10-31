@@ -332,6 +332,7 @@
         font-family: var(--body-font-L);
         width: max-content;
         color: var(--color-pink);
+	z-index: -1;
       }
       #overlay {
           position: absolute;
@@ -571,7 +572,8 @@
         </div>
 
       <div id="div7" class="toggleDiv box">
-        <h2>Upload Audio or Image Files</h2>
+        <h2>Upload Audio or Images </h2>
+	  <p><i>Use file extensions: '.wav', '.aiff', '.jpg', '.png', 'webvm';</i></p>
 
           <form id="uploadForm">
             <label for="fileInput">Choose a file:</label>
@@ -1039,7 +1041,7 @@ function void play(string sample, int notes[]){
     <!--I added some cacheing in case of accidents, the audio is not stored though-->
     <script>
       function readCache(){
-        code.value = localStorage['hydraStore'] || '//type hydra code here' + 's0.initCam() src(s0) .scrollX(0, 0.1) .out()';
+        code.value = localStorage['hydraStore'] || '//type code and double click ' + ' s0.initCam() src(s0) .scrollX(0, 0.1) .out()';
         textA.value = localStorage['cqenzeStore'] || '';
       }
     </script>
