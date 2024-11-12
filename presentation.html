@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"
+    />
+    <meta name="description" content="Design and Code by Joana Chicau" />
+    <meta
+      name="keywords"
+      content="design, choreography, physical, digital, web, creative coding, choreography"
+    />
+    <meta name="author" content="Joana Chicau" />
+    <title>･ﾟ*:･ﾟ✧</title>
+
+    <style>
+      @font-face {
+        font-family: "Goozette", sans-serif;
+        src: url("fonts/Goozette.otf") format("open-type");
+      }
+      @font-face {
+        font-family: "Goozee", sans-serif;
+        src: url("fonts/Goozeeoutline.otf") format("open-type");
+      }
+      @font-face {
+        font-family: "Gudea", sans-serif;
+        src: url("fonts/Gudea-Regular.ttf") format("truetype");
+      }
+      :root {
+        --color-bluedark: #170086;
+        --color-graylight: #d9dfff;
+        --color-graydark: #636363;
+        --color-green: #005e48;
+        --color-blue: #441dff;
+        --color-yellow: #fffdd7d4;
+        --color-lightpink: #ffd7fdd4;
+        --color-pink: #d50096;
+        --body-font-B: "Goozee";
+        --body-font-L: "Goozette";
+        --body-font-T: "Gudea";
+
+        --title-fontsize: calc(22px + 1.5vw);
+        --body-fontsize: calc(14px + 6 * (100vw - 320px) / 1600);
+        --body-fontsize-s: calc(11px + 6 * (100vw - 320px) / 1600);
+        --bg-fontsize: 30vw;
+        --bgsmall-fontsize: 15vw;
+      }
+
+      body {
+        color: var(--color-bluedark);
+        background: var(--color-graylight);
+        font-family: var(--body-font-T);
+        font-size: var(--body-fontsize);
+        padding: 2.5% 10%;
+      }
+      h1, h2, h3 {
+        font-family: var(--body-font-L);
+      }
+      h1{
+        font-size: var(--title-fontsize);
+        background: -webkit-linear-gradient(var(--color-pink), var(--color-lightpink), var(--color-blue));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      a{
+        border: 1px solid var(--color-yellow);
+        border-radius: 2rem;
+        font-size: var(--body-fontsize);
+        color: var(--color-blue);
+        text-decoration: none;
+      }
+      a:hover {
+        border: 1px solid var(--color-pink);
+      }
+      a:visited {
+        color: var(--color-bluedark);
+      }
+      ul {
+          font-size: var(--body-fontsize);
+          margin: 0rem 2rem;
+          list-style-type: "♪♫♬ ";
+          padding: 0% 10%;
+      }
+      .half{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      img{
+        width: 100%;
+        border-radius: 5rem;
+        padding: 0% 0% 2.5% 0%;
+      }
+    </style>
+  </head>
+  <body>
+
+<h1>Algorithmic Artscape: a Platform for Exploring Distributed Community Creativity</</h1>
+
+<h2>Inspiration and Influences...</h2>
+
+<h3>Choreography, Language & Code</h3>
+
+<div class="half">
+<img src="https://i.imgur.com/rbOSP4X.jpeg" alt="image divided in two, on the left a poem printed from an analogue type machine, on the right side a woman with headphones smiling while papers fall from the sky">
+<img src="https://i.imgur.com/8AD9XME.jpeg" alt="image in grayscale of a theater stage with people seating in a desk using tecnological artifacts and in the back two people dancing">
+</div>
+
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=EJe1kciX4ZQ" target="_blank">The House of Dust (1968) </a> a digital poem composed of four separate categories prepared by Knowles in advance and programmed in FORTRAN-IV by Tenney, which was then processed by a mainframe computer at Brooklyn Polytechnic Institute (BPI);</li>
+    <li><a href="https://www.fondation-langlois.org/9evenings/e/index.html" target="_blank">Open Score, 9 Evenings: Theatre & Engineering (1966)</a>  the first large-scale collaboration between artists and engineers and scientists. The two groups worked together for 10 months to develop technical equipment and systems that were used as an integral part of the artists’ performances;</li>
+    <li><a href="http://olga0.oralsite.be/oralsite/pages/What's_the_Score_Publication/" target="_blank">What's the Score? </a> an expanded publication on scores and notation systems employed in contemporary dance and performance practices from the turn of the millennium up to 2005;</li>
+    <li><a href="https://www.sicchio.com/work-1/hacking-choreography" target="_blank">Hacking Choreography by Kate Sicchio (2016):</a> explores both the overlap of programming and coding languages and choreography, as well as principles of computer hacking such as re-purposing or subverting;</li>
+    <li><a href="https://www.geometries.xyz/inventory.html" target="_blank">Geometries.xyz by Joana Chicau and Renick Bell (2020):</a> a growing collection of scores, ontologies on circling, circles and other geometries;</li>
+</ul>
+
+<h3>Music & AI</h3>
+<ul>
+  <li><a href="" target="_blank"></a></li>
+  <li><a href="" target="_blank"></a></li>
+  <li><a href="" target="_blank"></a></li>
+  <li><a href="" target="_blank"></a></li>
+</ul>
+
+
+<img src="https://www.q-o2.be/wp-content/uploads/2024/11/2-Screenshot-2024-10-31-at-15.15.16.png" alt="screenshot of the interface showing multiple buttons in blue and pink, text in bright pink and a collection of boxes with blue border.">
+
+<h2>From platform...</h2>
+<p>Algorithmic Artscape is built around a set of programming languages and tools for live coding audio and visuals, including a machine learning model. In addition, the platform hosts a set of scores to inspire artistic creation either by making use of the tools available in the platform or external ones.</p>
+
+<h2>...to performance!</h2>
+<p>Live coding — sometimes referred to as “on-the-fly programming,” “just in time programming,” or even “conversational programming” — is about people interacting with the world, and each other, in “real- time,” via code. <a href="https://mitpress.mit.edu/books/live-coding" target="_blank">Source Live Coding User's Manual</a></p>
+
+<h2>and community <3 </h2>
+<p> <a href="https://algorithmic-scape.art/gallery.html" target="_blank">An online gallery with artists contributions!</a></p>
+
+
+
+<h2>Future Plans</h2>
+<ul>
+  <li>Present at the International Conference for Live-Coding (2025);</li>
+  <li>Continue developing new features;</li>
+  <li>Work with other artists and communities;</li>
+</ul>
+
+<h2>BIOS</h2>
+
+<p>Celeste Betancur Gutierrez is an audiovisual sotfware inventor, composer, and live coder who performs in venues from academic computer music halss to nightclubs all around the world. She is obsessed with dance, magic and music. Currently she is a Ph.D candidate at Stanford University's Center for Computer Research in Music and Acoustics (CCRMA). Web: https://www.celestebetancur.com/
+</p>
+<p>Joana Chicau is a designer and researcher — with a background in dance. She researches the intersection of the body with the designed and programmed environment, aiming at widening the ways in which digital sciences is presented and made accessible to the public.  Her practice and exploration interweaves web programming with choreography — from the making of online platforms to performances and workshops. She is a PhD candidate at the Creative Institute at the University of the Arts London. Web: https://joana.art </p>
+
+<script></script>
+</body>
+</html>
