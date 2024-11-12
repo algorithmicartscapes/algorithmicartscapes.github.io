@@ -57,7 +57,7 @@
       h1, h2, h3 {
         font-family: var(--body-font-L);
       }
-      h1{
+      h1 {
         font-size: var(--title-fontsize);
         background: -webkit-linear-gradient(var(--color-pink), var(--color-lightpink), var(--color-blue));
         -webkit-background-clip: text;
@@ -92,6 +92,15 @@
         border-radius: 5rem;
         padding: 0% 0% 2.5% 0%;
       }
+      code {
+        color: var(--color-bluedark);
+        background: var(--color-yellow);
+        border-radius: 5rem;
+        width: fit-content();
+      }
+      li{
+          list-style: circle;
+      }
     </style>
   </head>
   <body>
@@ -100,31 +109,33 @@
 
 <h2>WORKSHOP</h2>
 
-<p>    This workshop will introduce Algorithmic Artscape, a work-in-progress web-platform which contains two components:</p>
+<p>This workshop will introduce Algorithmic Artscape, a work-in-progress web-platform which contains two components:</p>
     <li>  a set of programming languages and tools for live coding audio and visuals, including a machine learning model.  </li>
     <li>  a set of scores to inspire artistic creation either by making use of the tools above or external tools such as video and audio recording, writing, dance, photography.  </li>
 
+<p>Participants experience level: anyone curious to learn, no need for prior experience.</p>
 
-<p>Workshop Aspirations: </p>
+<h4>Workshop Aspirations: </h4>
   <li> learn about the platform;  </li>
   <li> exchange tricks, techniques and knowledge among participants;  </li>
   <li> produce code sketches and scores (translated to sound, images and/ or videos which can be exhibited in the online gallery space);  </li>
   <li> in addition participants will be invited to join the presentation included in the program;  </li>
 
-<p>Participants experience level: </p>
-<li> anyone curious to learn, no need for prior experience; </li>
 
 
-<p>Participants are asked to bring:</p>
+<h4>Participants are asked to bring:</h4>
 <li> their own laptop; </li>
 <li> code editor installed in their laptop (e.g. pulsar); </li>
 <li> headphones; </li>
 
 
-<h2><a href="https://algorithmic-scape.art/" target="_blank">CLICK HERE</a> to access Algorithmic Artscape ｡･:*:･ﾟ’★</h2>
+<h1>｡･:*:･ﾟ’★ ｡･:*:･ﾟ’★ ｡･:*:･ﾟ’★ ｡･:*:･ﾟ’★</h3>
 
+<h2><a href="https://algorithmic-scape.art/" target="_blank">CLICK HERE</a> to access Algorithmic Artscape! </h2>
 
-<h3>★ INTERFACE TOUR ★</h3>
+<h1>｡･:*:･ﾟ’★ ｡･:*:･ﾟ’★ ｡･:*:･ﾟ’★ ｡･:*:･ﾟ’★</h3>
+
+<h4><i>INTERFACE TOUR:</i></h4>
 
 <h3>Overview Box</h3>
 <ul>
@@ -156,9 +167,11 @@
 <p>Example code:</p>
 <code>
 audiofilename+-;
+</code>
+</br>
+<code>
 anotheraudiofile-+;
 </code>
-
 
 <h3>HYDRA BOX</h3>
 <p>Hydra is an analog-synth-like coding environment for real-time visuals created by Olivia Jack.</p>
@@ -173,6 +186,9 @@ osc().out()
 </br>
 <code>
 s0.initCam()
+</code>
+</br>
+<code>
 src(s0).kaleid(4).out()
 </code>
 </br>
@@ -181,12 +197,16 @@ src(s0).kaleid(4).out()
 <br>
 <code>
 s0.initScreen()
-src(s0)
-  .scrollX(0, 0.05 )
-  .layer(osc(30,0.1,2).mask(shape(4)))
+</code>
+</br>
+<code>
+src(s0).scrollX(0, 0.05 ).layer(osc(30,0.1,2).mask(shape(4)))
+</code>
+</br>
+<code>
 .out()
 </code>
-<br>
+</br>
 
 </ul>
 
