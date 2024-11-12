@@ -1,0 +1,218 @@
+<!doctype html>
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"
+    />
+    <meta name="description" content="Design and Code by Joana Chicau" />
+    <meta
+      name="keywords"
+      content="design, choreography, physical, digital, web, creative coding, choreography"
+    />
+    <meta name="author" content="Joana Chicau" />
+    <title>･ﾟ*:･ﾟ✧</title>
+
+    <style>
+      @font-face {
+        font-family: "Goozette", sans-serif;
+        src: url("fonts/Goozette.otf") format("open-type");
+      }
+      @font-face {
+        font-family: "Goozee", sans-serif;
+        src: url("fonts/Goozeeoutline.otf") format("open-type");
+      }
+      @font-face {
+        font-family: "Gudea", sans-serif;
+        src: url("fonts/Gudea-Regular.ttf") format("truetype");
+      }
+      :root {
+        --color-bluedark: #170086;
+        --color-graylight: #d9dfff;
+        --color-graydark: #636363;
+        --color-green: #005e48;
+        --color-blue: #441dff;
+        --color-yellow: #fffdd7d4;
+        --color-lightpink: #ffd7fdd4;
+        --color-pink: #d50096;
+        --body-font-B: "Goozee";
+        --body-font-L: "Goozette";
+        --body-font-T: "Gudea";
+
+        --title-fontsize: calc(22px + 1.5vw);
+        --body-fontsize: calc(14px + 6 * (100vw - 320px) / 1600);
+        --body-fontsize-s: calc(11px + 6 * (100vw - 320px) / 1600);
+        --bg-fontsize: 30vw;
+        --bgsmall-fontsize: 15vw;
+      }
+
+      body {
+        color: var(--color-bluedark);
+        background: var(--color-graylight);
+        font-family: var(--body-font-T);
+        font-size: var(--body-fontsize);
+        padding: 2.5% 10%;
+      }
+      h1, h2, h3 {
+        font-family: var(--body-font-L);
+      }
+      h1{
+        font-size: var(--title-fontsize);
+        background: -webkit-linear-gradient(var(--color-pink), var(--color-lightpink), var(--color-blue));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      a{
+        border: 1px solid var(--color-yellow);
+        border-radius: 2rem;
+        font-size: var(--body-fontsize);
+        color: var(--color-blue);
+        text-decoration: none;
+      }
+      a:hover {
+        border: 1px solid var(--color-pink);
+      }
+      a:visited {
+        color: var(--color-bluedark);
+      }
+      ul {
+          font-size: var(--body-fontsize);
+          margin: 0rem 2rem;
+          list-style-type: "♪♫♬ ";
+          padding: 0% 10%;
+      }
+      .half{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      img{
+        width: 100%;
+        border-radius: 5rem;
+        padding: 0% 0% 2.5% 0%;
+      }
+    </style>
+  </head>
+  <body>
+
+<h1>Algorithmic Artscape: a Platform for Exploring Distributed Community Creativity</</h1>
+
+<h2>WORKSHOP</h2>
+
+<p>    This workshop will introduce Algorithmic Artscape, a work-in-progress web-platform which contains two components:</p>
+    <li>  a set of programming languages and tools for live coding audio and visuals, including a machine learning model.  </li>
+    <li>  a set of scores to inspire artistic creation either by making use of the tools above or external tools such as video and audio recording, writing, dance, photography.  </li>
+
+
+<p>Workshop Aspirations: </p>
+  <li> learn about the platform;  </li>
+  <li> exchange tricks, techniques and knowledge among participants;  </li>
+  <li> produce code sketches and scores (translated to sound, images and/ or videos which can be exhibited in the online gallery space);  </li>
+  <li> in addition participants will be invited to join the presentation included in the program;  </li>
+
+<p>Participants experience level: </p>
+<li> anyone curious to learn, no need for prior experience; </li>
+
+
+<p>Participants are asked to bring:</p>
+<li> their own laptop; </li>
+<li> code editor installed in their laptop (e.g. pulsar); </li>
+<li> headphones; </li>
+
+
+<h2><a href="https://algorithmic-scape.art/" target="_blank">CLICK HERE</a> to access Algorithmic Artscape ｡･:*:･ﾟ’★</h2>
+
+
+<h3>★ INTERFACE TOUR ★</h3>
+
+<h3>Overview Box</h3>
+<ul>
+  <li>In this box you can control both the opacity of visual elements and the volume of the audio. </li>
+    <li>The button 'Clear the Browser Cache' does what it says :)</li>
+  </ul>
+
+<h3>Murmurings Box</h3>
+<ul>
+  <li>Create a new set of words by typing a word and number on the first field, e.g. 'magic, 10'.</li>
+    <li> Then, click the button 'Generate'. </li>
+      <li>You can adjust the font size in the slider below.</li>
+    </ul>
+
+<h3>clouds & grains Box</h3>
+<ul>
+  <li>Upload audio files on the 'Upload Audio or Images box'. </li>
+    <li>Type in your file name and extension on the first input field. </li>
+      <li>Then experiement with the spliders!</li>
+    </ul>
+
+
+<h3>mosaic AI</h3>
+<ul>
+  <li>A brief explanation..</li>
+</ul>
+
+<h3>CQenze</h3>
+<p>Example code:</p>
+<code>
+audiofilename+-;
+anotheraudiofile-+;
+</code>
+
+
+<h3>HYDRA BOX</h3>
+<p>Hydra is an analog-synth-like coding environment for real-time visuals created by Olivia Jack.</p>
+<ul>
+  <li>Find below some code examples (copy and paste in the Hydra box):</li>
+</br>
+<code>
+osc().out()
+</code>
+</br>
+<li>Use your web camera as a source:</li>
+</br>
+<code>
+s0.initCam()
+src(s0).kaleid(4).out()
+</code>
+</br>
+
+<li>Use your computer tab and add visual effects:</li>
+<br>
+<code>
+s0.initScreen()
+src(s0)
+  .scrollX(0, 0.05 )
+  .layer(osc(30,0.1,2).mask(shape(4)))
+.out()
+</code>
+<br>
+
+</ul>
+
+<p>To learn more about how to compose visuals coding in Hydra <a href="https://hydra-book.glitch.me/#/" target="_blank"> visit this link with tutorials</a>.</p>
+
+<h3>Upload Audio or Images</h3>
+<ul>
+  <li>Use file extensions: '.wav', '.aiff', '.jpg', '.png', 'webm', 'mp4';</li>
+  <li>You can use this files in connection with boxes: 'clouds & grains'; 'CQenze' and 'HYDRA BOX'!</li>
+</ul>
+
+<h2>More Links and Inspiration</h2>
+<ul>
+  <li> <a href="https://blog.toplap.org/" target="_blank">TopLap</a></li>
+  <li> <a href="https://www.youtube.com/c/Eulerroom/videos" target="_blank">Live Streamed live coding performances Eulerroom</a></li>
+  <li> <a href="https://creativecodingutrecht.nl/index-articles" target="_blank">Interviews with various live coders </a></li>
+  <li> <a href="" target="_blank"></a></li>
+
+</ul>
+
+<h2>BIOS</h2>
+
+<p>Celeste Betancur Gutierrez is an audiovisual sotfware inventor, composer, and live coder who performs in venues from academic computer music halss to nightclubs all around the world. She is obsessed with dance, magic and music. Currently she is a Ph.D candidate at Stanford University's Center for Computer Research in Music and Acoustics (CCRMA). Web: https://www.celestebetancur.com/
+</p>
+<p>Joana Chicau is a designer and researcher — with a background in dance. She researches the intersection of the body with the designed and programmed environment, aiming at widening the ways in which digital sciences is presented and made accessible to the public.  Her practice and exploration interweaves web programming with choreography — from the making of online platforms to performances and workshops. She is a PhD candidate at the Creative Institute at the University of the Arts London. Web: https://joana.art </p>
+
+<script></script>
+</body>
+</html>
