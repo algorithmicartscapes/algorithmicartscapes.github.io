@@ -23,6 +23,10 @@
         font-family: "Goozee", sans-serif;
         src: url("fonts/Goozeeoutline.otf") format("open-type");
       }
+      @font-face {
+        font-family: "Gudea", sans-serif;
+        src: url("fonts/Gudea-Regular.ttf") format("truetype");
+      }
 
       :root {
         --color-bluedark: #170086;
@@ -126,6 +130,7 @@
         background: var(--color-yellow);
         border-radius: 5rem;
         line-break: anywhere;
+        font-family: var(--body-font-T);
       }
 
       /***************** MOBILE ****************/
@@ -159,7 +164,7 @@
         src(o0).modulate(gradient().pixelate(()=>ch.pos*2,2).color(-1,1).brightness(-.5),.1).layer(
         osc(30,()=>play?.1:.6,()=>ch.pos*2).modulate(noise(3),()=>ch.rate*.1).pixelate(9999,()=>ch.play?9999:8)
         .mask(shape(2,.1,0).scrollY(-.5))).out()
-        
+
         ch={a:0,a0:0,speed:2,fire:0,rate:1,pos:0,play:0}
         update=()=>{
         t=time*ch.speed

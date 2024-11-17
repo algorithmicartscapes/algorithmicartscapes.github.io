@@ -87,19 +87,17 @@
         flex-direction: row;
         justify-content: space-between;
       }
-      img{
-        width: 100%;
-        border-radius: 5rem;
-        padding: 0% 0% 2.5% 0%;
-      }
       code {
+        display: block;
+        font-family: var(--body-font-T);
+        padding: 0.5rem;
         color: var(--color-bluedark);
         background: var(--color-yellow);
         border-radius: 5rem;
-        width: fit-content();
+        width: fit-content;
       }
       li{
-          list-style: circle;
+        list-style: circle;
       }
     </style>
   </head>
@@ -175,39 +173,40 @@ anotheraudiofile-+;
 
 <h3>HYDRA BOX</h3>
 <p>Hydra is an analog-synth-like coding environment for real-time visuals created by Olivia Jack.</p>
-<ul>
-  <li>Find below some code examples (copy and paste in the Hydra box):</li>
-</br>
-<code>
-osc().out()
-</code>
-</br>
-<li>Use your web camera as a source:</li>
-</br>
-<code>
-s0.initCam()
-</code>
-</br>
-<code>
-src(s0).kaleid(4).out()
-</code>
-</br>
+  <ul>
+    <li>Find below some code examples (copy and paste in the Hydra box):</li>
 
-<li>Use your computer tab and add visual effects:</li>
-<br>
-<code>
-s0.initScreen()
-</code>
-</br>
-<code>
-src(s0).scrollX(0, 0.05 ).layer(osc(30,0.1,2).mask(shape(4)))
-</code>
-</br>
-<code>
-.out()
-</code>
-</br>
+  <code>
+  osc().out()
+  </code>
 
+  <li>Use your web camera as a source:</li>
+  <code>
+  s0.initCam()
+  </code>
+
+  <code>
+  src(s0).kaleid(4).out()
+  </code>
+
+  <li>Use your computer tab and add visual effects:</li>
+
+  <code>
+  s0.initScreen()
+  </code>
+
+  <code>
+  src(s0).scrollX(0,0.05).layer(osc(30,0.1,2).mask(shape(4)))
+  </code>
+
+  <code>
+  .out()
+  </code>
+
+  <li>Increase resolution of the Hydra sketch:</li>
+  <code>
+  setResolution(1600,900)
+  </code>
 </ul>
 
 <p>To learn more about how to compose visuals coding in Hydra <a href="https://hydra-book.glitch.me/#/" target="_blank"> visit this link with tutorials</a>.</p>

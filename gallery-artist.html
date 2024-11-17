@@ -23,6 +23,10 @@
         font-family: "Goozee", sans-serif;
         src: url("fonts/Goozeeoutline.otf") format("open-type");
       }
+      @font-face {
+        font-family: "Gudea", sans-serif;
+        src: url("fonts/Gudea-Regular.ttf") format("truetype");
+      }
 
       :root {
         --color-bluedark: #170086;
@@ -107,15 +111,32 @@
         border-radius: 5rem;
         border: 0.1rem solid var(--color-blue);
         padding: 1rem;
+        width: fit-content;
       }
       .artistwork .bio a {
         color: var(--color-yellow);
       }
-
-      /***************** MOBILE ****************/
-
-      @media screen and (min-width: 0px) and (max-width: 768px) {
+      .split {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
       }
+      iframe {
+        width: 100%;
+        height: auto;
+      }
+      pre {
+        display: inline;
+        background: var(--color-yellow);
+        border-radius: 5rem;
+        line-break: anywhere;
+        font-family: var(--body-font-T);
+      }
+
+            /***************** MOBILE ****************/
+
+            @media screen and (min-width: 0px) and (max-width: 768px) {
+            }
     </style>
   </head>
   <body>
