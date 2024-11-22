@@ -21,9 +21,9 @@
 me.dir()+"felt.txt" @=> string FEATURES_FILE;
 me.dir()+"felt-texture.wav" @=> string space2File;
 
-global float TEXTURE;
-global float CONTROL;
-global float VOLUME;
+0 => global float TEXTURE;
+0 => global float CONTROL;
+0 => global float VOLUME;
 
 //------------------------------------------------------------------------------
 // expected model file format; each VALUE is a feature value

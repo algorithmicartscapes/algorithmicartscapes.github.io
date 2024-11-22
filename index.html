@@ -494,7 +494,7 @@
         <h2>Overview </h2>
         <label for="opacitySlider">Reduce opacity of visual elements:</label>
         <input type="range" id="opacitySlider" min="0" max="100" value="100">
-        <p>Reduce volume of audio elements:</p>
+        <!-- <p>Reduce volume of audio elements:</p> -->
         <!-- ADD cotrol buttons or sliders for audio components  -->
         <!--
 	      <button id="" onclick="">Clear Browser Cache</button>
@@ -985,6 +985,7 @@ function void play(string sample, int notes[]){
         // Virtual filesnames are being stored here
         const names = []
         const images = {}
+        const videos = {}
         const form = document.getElementById('uploadForm');
         form.addEventListener('submit', handleSubmit);
     
@@ -997,10 +998,10 @@ function void play(string sample, int notes[]){
           const reader = new FileReader();
     
           if (file) {
-            if(name.slice(-3) === "wav" || name.slice(-3) === "WAV"){
+            if(name.slice(-3) === "wav" || name.slice(-3) === "WAV" || name.slice(-4) === "aiff"){
                 reader.readAsArrayBuffer(file);
               }
-            if(name.slice(-3) === "jpg" || name.slice(-3) === "png"){
+            if(name.slice(-3) === "jpg" || name.slice(-3) === "png" || name.slice(-3) === "webm" || name.slice(-3) === "mp4"){
               reader.readAsDataURL(file)
             }
             reader.onload = (fileReaderEvent) => {
@@ -1013,14 +1014,19 @@ function void play(string sample, int notes[]){
             }
             if(counter === names.length){
               var nameTemp = name.slice(0,name.length-4)
-              if(name.slice(-3) === "wav" || name.slice(-3) === "WAV"){
+              if(name.slice(-3) === "wav" || name.slice(-3) === "WAV" || name.slice(-4) === "aiff"){
                 theChuck.createFile("",nameTemp+".wav",new Uint8Array(fileReaderEvent.srcElement.result))
                 names.push(name)
               }
-              if(name.slice(-3) === "jpg" || name.slice(-3) === "png"){
+              if(name.slice(-3) === "jpg" || name.slice(-3) === "png" || name.slice(-3) === "webm"){
                 objectName = name;
                 images[objectName] = fileReaderEvent.target.result
                 names.push('images["'+name+'"]')
+              }
+              if(name.slice(-3) === "mp4"){
+                objectName = name;
+                videos[objectName] = fileReaderEvent.target.result
+                names.push('videos["'+name+'"]')
               }
               console.log("file: " +nameTemp+ " created in the virtual system")
               names.push(name)
@@ -1040,11 +1046,11 @@ function void play(string sample, int notes[]){
     </script>
 
     <!--I added some cacheing in case of accidents, the audio is not stored though-->
-    <script>
+    <!-- <script>
       function readCache(){
         code.value = localStorage['hydraStore'] || '//type code and double click ' + ' s0.initCam() src(s0) .scrollX(0, 0.1) .out()';
         textA.value = localStorage['cqenzeStore'] || '';
       }
-    </script>
+    </script> -->
   </body>
 </html>
