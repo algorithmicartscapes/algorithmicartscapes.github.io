@@ -401,7 +401,7 @@
       }
     </style>
   </head>
-  <body onload="readCache()">
+  <body>
 
     <div id="overlay">
       <h3>Welcome to ☆⌒ Algorithmic Artscapes ｡･:*:･ﾟ’★</h3>
@@ -503,9 +503,9 @@
 
       <div id="div1" class="toggleDiv box">
           <h2>Murmurings</h2>
-          <p>Create a new set of words by typing a word and number, sepparated by comma <i>(e.g. 'magic, 10')</i>:</p>
+          <p>Create a new set of words by typing a word and number, sepparated by comma <i>(e.g. 'magic, 10') - max. 20 </i>:</p>
           <input id="cloudWord" class="" placeholder="type a word, number of words"></input>
-          <button id="cloudWordTrigger" onclick="">Generate</button>
+          <button id="cloudWordTrigger" onclick="runPromt()">Generate</button>
           <label for="fontSizeSlider">Adjust Font Size:</label>
           <input type="range" id="fontSizeSlider" min="10" max="50" value="16">
       </div>
@@ -524,17 +524,18 @@
         <label for="goal">pos goal</label>
         <input id="goal" type="range" min="0" max="100" value="50" />
         <label for="random">random</label>
-        <input id="random" type="range" min="0" max="100" value="50" />
+        <input id="random" type="range" min="0" max="100" value="100" />
         <label for="reverb">reverb</label>
         <input id="reverb" type="range" min="1" max="100" value="50" />
         <label for="volumeGrain">volume</label>
-        <input id="volumeGrain" type="range" min="1" max="100" value="50" />
+        <input id="volumeGrain" type="range" min="1" max="100" value="100" />
       </div>
 
       <div id="div3" class="toggleDiv box">
         <h2>mosaic AI</h2>
         <!-- <button id="train">train model</button> -->
-        <button id="runMosaic">run model</button>
+        <button id="runMosaic">+</button>
+        <button id="removeMosaic">-</button>
         <label for="textureMosaic">texture</label>
         <input id="textureMosaic" type="range" min="1" max="100" value="50" />
         <label for="expressionMosaic">expression</label>
@@ -548,7 +549,7 @@
         <button id="startCQenze">+</button>
         <button id="removeCQenze">-</button>
         <button id="replaceCQenze">=</button>
-        <textarea id="cqenzeCode" name="cqenze" rows="5" cols="20" onchange="localStorage['cqenzeStore'] = textA.value;"
+        <textarea id="cqenzeCode" name="cqenze" rows="5" cols="20" placeholder="audiofile+-+-;"
         autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
       </div>
 
@@ -556,7 +557,7 @@
         <h2>HYDRA BOX</h2>
         <!-- canvas for hydra preview -->
         <canvas class="hydraCnvs" id="hydraCanvas" width="200" height="100"></canvas>
-        <textarea id="hydraCode" name="hydra" rows="5" cols="20" onchange="localStorage['hydraStore'] = code.value;"
+        <textarea id="hydraCode" name="hydra" rows="5" cols="20" 
         autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
         <button id="toggleButtonWidth" onclick="toggleWidth()">Background</button>
         </div>
@@ -745,7 +746,7 @@
       const words = ["","","","","","","","","","","","","","","","","","","",""];
       let  keyword = ""
 
-      function choreoPrompt() {
+      function getPrompt() {
           theChuck.getString("w0").then( function(val) {
             words[0] = val;
           });
@@ -810,7 +811,8 @@
 
       var cloudWordTrigger = document.getElementById( "cloudWordTrigger" )
 
-      cloudWordTrigger.addEventListener( "click", function(e) {
+      //cloudWordTrigger.addEventListener( "click", function(e) {
+      function runPromt(){
 
         var sec = document.querySelectorAll(".wordMaps"); 
         
@@ -821,10 +823,10 @@
         var cloudWord = document.getElementById("cloudWord").value
         var fields = cloudWord.split(',');
         var word = fields[0]
-        var numberOfWords = parseInt(fields[1])
+        var numberOfWords = parseInt(fields[1]) < 20 ? parseInt(fields[1]) : 20
 
         theChuck.setString("keyword",word)
-        choreoPrompt()
+        getPrompt()
         theChuck.broadcastEvent("newScore")
         
         for (i = 0; i < numberOfWords; ++i) {
@@ -835,8 +837,8 @@
           node.appendChild(textnode);
           wordsDiv.appendChild(node);
         }
-        random();
-      });
+        random()
+      }
 
       // <p class="wordMaps">extra smooth</p>
       
@@ -845,22 +847,36 @@
     <!-- run Mosaic -->
     <script>
       var runMosaic = document.getElementById("runMosaic")
+      
       runMosaic.addEventListener( "click", function(e) {
-        theChuck.runCode(`
-          Machine.add(me.dir()+"mosaic-synth-mic.ck");
-        `);
+        theChuck.getInt("MODELLOADED").then((val) => {
+          if(val === 1){
+            theChuck.runCode(`
+            Machine.add(me.dir()+"mosaic-synth-mic.ck") => global int MOSAICID;
+          `);
+          } else {
+            console.log("Chuck is not ready to run your model yet...")
+          }
+        })
       }); 
 
+      var removeMosaic = document.getElementById( "removeMosaic" )
+      removeMosaic.addEventListener( "click", function(e) {
+        theChuck.getInt("MOSAICID").then( function (val){
+          theChuck.runCode('Machine.remove('+ val +');')
+        })
+      });
+
       var textureMosaic = document.getElementById( "textureMosaic" )
-      textureMosaic.addEventListener( "click", function(e) {
+      textureMosaic.addEventListener( "input", function(e) {
         theChuck.setFloat("TEXTURE",textureMosaic.value/100.0)
       });
       var expressionMosaic = document.getElementById( "expressionMosaic" )
-      expressionMosaic.addEventListener( "click", function(e) {
+      expressionMosaic.addEventListener( "input", function(e) {
         theChuck.setFloat("CONTROL",expressionMosaic.value/100.0)
       });
       var volumeMosaic = document.getElementById( "volumeMosaic" )
-      volumeMosaic.addEventListener( "click", function(e) {
+      volumeMosaic.addEventListener( "input", function(e) {
         theChuck.setFloat("VOLUME",volumeMosaic.value/100.0)
       });
 
@@ -871,42 +887,44 @@
       
       function granuralizer(){
         var sampleName = document.getElementById( "sampleGrains" ).value
-        var codeToRun = 'Machine.add(me.dir()+"grain.ck:'+sampleName+'");'
+        var codeToRun = 'Machine.add(me.dir()+"grain.ck:'+sampleName+'") => global int GRAINSID;'
         theChuck.runCode(codeToRun)
       }
 
       var removeGrains = document.getElementById( "removeGrains" )
       removeGrains.addEventListener( "click", function(e) {
-        //TODO
+        theChuck.getInt("GRAINSID").then( function (val){
+          theChuck.runCode('Machine.remove('+ val +');')
+        })
       });
 
       var rateGrain = document.getElementById( "play rate" )
-      rateGrain.addEventListener( "click", function(e) {
+      rateGrain.addEventListener( "input", function(e) {
         theChuck.setFloat("GRAIN_PLAY_RATE",rateGrain.value/100.0)
       });
 
       var positionGrain = document.getElementById( "position" )
-      positionGrain.addEventListener( "click", function(e) {
+      positionGrain.addEventListener( "input", function(e) {
         theChuck.setFloat("GRAIN_POSITION",positionGrain.value/100.0)
       });
 
       var posGoal = document.getElementById( "goal" )
-      posGoal.addEventListener( "click", function(e) {
+      posGoal.addEventListener( "input", function(e) {
         theChuck.setFloat("GRAIN_POSITION_GOAL",posGoal.value/100.0)
       });
 
       var randomPos = document.getElementById( "random" )
-      randomPos.addEventListener( "click", function(e) {
+      randomPos.addEventListener( "input", function(e) {
         theChuck.setFloat("GRAIN_POSITION_RANDOM",0.00001 + randomPos.value/100.0)
       });
 
       var reverbGrain = document.getElementById( "reverb" )
-      reverbGrain.addEventListener( "click", function(e) {
+      reverbGrain.addEventListener( "input", function(e) {
         theChuck.setFloat("REVERB_MIX",reverbGrain.value/100.0)
       });
 
       var volumeGrain = document.getElementById( "volumeGrain" )
-      volumeGrain.addEventListener( "click", function(e) {
+      volumeGrain.addEventListener( "input", function(e) {
         theChuck.setFloat("MAIN_VOLUME",volumeGrain.value/100.0)
       });
 

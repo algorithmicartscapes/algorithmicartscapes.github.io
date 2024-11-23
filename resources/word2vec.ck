@@ -4,10 +4,10 @@
         me.dir() + "2dimentions.txt" => string filepath;
         <<< "loading 2D model:", filepath, "..." >>>;
         model.load( filepath );
-        print( model );
+        print( model ) => global int MODELLOADED;
 
         // print info about a loaded Word2Vec model
-        fun void print( Word2Vec model )
+        fun int print( Word2Vec model )
         {
             // print info
             <<< "dictionary size:", model.size() >>>;
@@ -19,6 +19,8 @@
             for( int i; i < model.dim(); i++ )
             { cherr <= "dimension " <= i <= " range: [" <= mins[i] <= ", "
                     <= maxs[i] <= "]" <= IO.newline(); }
+
+            return true;
         }
 
         float mins[0], maxs[0];

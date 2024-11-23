@@ -15,9 +15,9 @@ if( me.args() > 0 ) me.arg(0) => FILENAME;
 // grain position (0 start; 1 end)
 0 => global float GRAIN_POSITION;
 // grain position goal (for interp)
-0 => global float GRAIN_POSITION_GOAL;
+0.5 => global float GRAIN_POSITION_GOAL;
 // grain position randomization
-.001 => global float GRAIN_POSITION_RANDOM;
+.8 => global float GRAIN_POSITION_RANDOM;
 // grain jitter (0 == periodic fire rate)
 1 => global float GRAIN_FIRE_RANDOM;
 
@@ -43,8 +43,6 @@ g => Gain feedback => DelayL delay => g;
 // connect
 lisa.chan(0) => blocker;
 
-// reverb mix
-REVERB_MIX => reverb.mix;
 // pole location to block DC and ultra low frequencies
 .99 => blocker.blockZero;
 
@@ -53,6 +51,9 @@ spork~gainMain();
 
 function gainMain(){
     while(true){
+        // reverb mix
+        REVERB_MIX => reverb.mix;
+        // main volume
         MAIN_VOLUME => reverb.gain;
         samp => now;
     }
@@ -62,6 +63,7 @@ function gainMain(){
 // main loop
 while( true )
 {
+    
     GRAIN_LENGTHF::ms => GRAIN_LENGTH;
     // fire a grain
     fireGrain();
