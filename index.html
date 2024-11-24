@@ -726,9 +726,10 @@
     <script>
 
       // create a new hydra-synth instance
-      var hydra = new Hydra({ detectAudio: false, canvas: document.getElementById("hydraCanvas") })
+      var hydra = new Hydra({ detectAudio: true, canvas: document.getElementById("hydraCanvas") })
       //console.log("your hydra is alive");
       //console.log(hydra);
+      setResolution(1600,900)
       s0.initCam()
       src(s0)
       .scrollX(0, 0.1)
