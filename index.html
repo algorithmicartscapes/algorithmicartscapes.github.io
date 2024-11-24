@@ -453,6 +453,9 @@
       <button id="btn5" onclick="toggleVisibility('div5', 'btn5')">
         Hydra
       </button>
+      <button id="btn6" onclick="toggleVisibility('div6', 'btn6')">
+        ChucK
+      </button>
       <!-- <button
         id="btn6"
         onclick="toggleVisibility('div6', 'btn6')"
@@ -563,13 +566,13 @@
         </div>
       
         <div id="div6" class="toggleDiv box">
-          <h2>Record Audio</h2>
+          <h2>ChucK</h2>
           <div class="clip">
-            <audio controls></audio>
-            <p>Recording Name</p>
-            <button>Delete</button>
-            <button onclick="" type="button">Play Recorded Audio</button>
-            <button onclick="" type="button">Pause Recorded</button>
+            <button id="chuckAdd" onclick="" type="button">+</button>
+            <button id="chuckRemove" onclick="" type="button">-</button>
+            <button id="chuckReplace" onclick="" type="button">=</button>
+            <textarea id="chuckCode" name="chuck" rows="5" cols="20" placeholder="// your chuck code here"
+            autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
           </div>
         </div>
 
@@ -811,7 +814,6 @@
 
       var cloudWordTrigger = document.getElementById( "cloudWordTrigger" )
 
-      //cloudWordTrigger.addEventListener( "click", function(e) {
       function runPromt(){
 
         var sec = document.querySelectorAll(".wordMaps"); 
@@ -1063,12 +1065,23 @@ function void play(string sample, int notes[]){
       const ulHolder = document.getElementById('fileList')
     </script>
 
-    <!--I added some cacheing in case of accidents, the audio is not stored though-->
-    <!-- <script>
-      function readCache(){
-        code.value = localStorage['hydraStore'] || '//type code and double click ' + ' s0.initCam() src(s0) .scrollX(0, 0.1) .out()';
-        textA.value = localStorage['cqenzeStore'] || '';
-      }
-    </script> -->
+    <script>
+      var chuckAdd = document.getElementById( "chuckAdd" );
+      var chuckRemove = document.getElementById( "chuckRemove" );
+      var chuckReplace = document.getElementById( "chuckReplace" );
+      var chuckCode = document.getElementById( "chuckCode" ).value
+
+      chuckAdd.addEventListener( "click", async function() {
+        var codeToRun = 'Machine.eval('+chuckCode+'") => global int GRAINSID; <<< GRAINSID >>>; '
+        theChuck.runCode(codeToRun)
+      });
+      chuckRemove.addEventListener( "click", async function() {
+        theChuck.removeLastCode();
+      });
+      chuckReplace.addEventListener( "click", async function() {
+        var codeToRun = 'Machine.eval('+chuckCode+'") => global int GRAINSID;'
+        theChuck.replaceCode()
+      });
+    </script>
   </body>
 </html>
