@@ -1069,18 +1069,16 @@ function void play(string sample, int notes[]){
       var chuckAdd = document.getElementById( "chuckAdd" );
       var chuckRemove = document.getElementById( "chuckRemove" );
       var chuckReplace = document.getElementById( "chuckReplace" );
-      var chuckCode = document.getElementById( "chuckCode" ).value
+      var chuckCode = document.getElementById( "chuckCode" )
 
       chuckAdd.addEventListener( "click", async function() {
-        var codeToRun = 'Machine.eval('+chuckCode+'") => global int GRAINSID; <<< GRAINSID >>>; '
-        theChuck.runCode(codeToRun)
+        theChuck.runCode(chuckCode.value)
       });
       chuckRemove.addEventListener( "click", async function() {
         theChuck.removeLastCode();
       });
       chuckReplace.addEventListener( "click", async function() {
-        var codeToRun = 'Machine.eval('+chuckCode+'") => global int GRAINSID;'
-        theChuck.replaceCode()
+        theChuck.replaceCode(chuckCode.value)
       });
     </script>
   </body>
