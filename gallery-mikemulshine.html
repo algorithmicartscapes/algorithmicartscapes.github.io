@@ -1,0 +1,188 @@
+<!doctype html>
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"
+    />
+    <meta name="description" content="Design and Code by Joana Chicau" />
+    <meta
+      name="keywords"
+      content="design, choreography, physical, digital, web, creative coding, choreography"
+    />
+    <meta name="author" content="Joana Chicau" />
+    <title>･ﾟ*:･ﾟ✧</title>
+
+    <style>
+      @font-face {
+        font-family: "Goozette", sans-serif;
+        src: url("fonts/Goozette.otf") format("open-type");
+      }
+      @font-face {
+        font-family: "Goozee", sans-serif;
+        src: url("fonts/Goozeeoutline.otf") format("open-type");
+      }
+      @font-face {
+        font-family: "Gudea", sans-serif;
+        src: url("fonts/Gudea-Regular.ttf") format("truetype");
+      }
+
+      :root {
+        --color-bluedark: #170086;
+        --color-graylight: #d9dfff;
+        --color-graydark: #636363;
+        --color-green: #005e48;
+        --color-blue: #441dff;
+        --color-yellow: #fffdd7d4;
+        --color-lightpink: #ffd7fdd4;
+        --color-pink: #d50096;
+        --body-font-B: "Goozee";
+        --body-font-L: "Goozette";
+        --body-font-T: "Gudea";
+
+        --title-fontsize: calc(22px + 1.5vw);
+        --body-fontsize: calc(14px + 6 * (100vw - 320px) / 1600);
+        --body-fontsize-s: calc(11px + 6 * (100vw - 320px) / 1600);
+        --bg-fontsize: 30vw;
+        --bgsmall-fontsize: 15vw;
+      }
+
+      body {
+        color: var(--color-bluedark);
+        background: var(--color-yellow);
+        margin: 1vh 10vw;
+      }
+
+      h1.title {
+        font-family: var(--body-font-B);
+        font-size: var(--bgsmall-fontsize);
+        color: var(--color-blue);
+        text-justify: center;
+        position: absolute;
+        z-index: -999;
+        opacity: 0.25;
+        top: 0;
+        left: 0;
+        margin: 0% 5%;
+      }
+
+      #menu {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        justify-content: end;
+        font-family: var(--body-font-L);
+      }
+      #menu a:hover {
+        border-bottom: 1px dashed var(--color-pink);
+      }
+      #menu a {
+        border-bottom: 1px solid var(--color-yellow);
+      }
+      a#gallery {
+        border-radius: 6rem;
+        background: var(--color-yellow);
+        border: 2px solid var(--color-yellow);
+        color: var(--color-blue);
+        margin: 0rem 1rem;
+        text-decoration: none;
+      }
+
+      .artistwork h2,
+      .artistwork p,
+      .artistwork figcaption {
+        color: var(--color-blue);
+        font-family: var(--body-font-L);
+      }
+      .artistwork a {
+        color: var(--color-blue);
+        font-family: var(--body-font-B);
+      }
+      img,
+      audio,
+      video {
+        border-radius: 5rem;
+        border: 0.1rem solid var(--color-yellow);
+        width: 100%;
+      }
+      .artistwork .bio {
+        color: var(--color-yellow);
+        background-color: var(--color-blue);
+        border-radius: 3.5rem;
+        border: 0.1rem solid var(--color-blue);
+        padding: 1rem;
+        width: fit-content;
+      }
+      .artistwork .bio a {
+        color: var(--color-yellow);
+      }
+      .split {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      iframe {
+        width: 100%;
+      }
+      pre {
+        display: inline;
+        background: var(--color-yellow);
+        border-radius: 5rem;
+        line-break: anywhere;
+        font-family: var(--body-font-T);
+      }
+
+      /***************** MOBILE ****************/
+
+      @media screen and (min-width: 0px) and (max-width: 768px) {
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="title">Algorithmic Artscape by...</h1>
+    <div id="menu">
+      <a href="gallery.html" id="gallery" title="gallery">
+        back to gallery ↗
+      </a>
+    </div>
+
+    <div class="artistwork">
+      <h2>Mike Mulshine</h2>
+
+      <div class="">
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/SDE62_m_6Xo?si=M1kmiWXnWUqu3r-m"
+          title="Algorithmic Art by Mike Mulshine generated using the platform algorithmic-scape.art"
+          frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        >
+          Your browser does not support the iframe video tag.
+        </iframe>
+      </div>
+
+      <pre>
+
+          iamai
+
+          to love.
+          to hold a memory
+          above, beneath, and
+          in between
+          all else
+      </pre>
+
+      <p class="bio">
+        <a href="https://mikemulshine.com/" target="_blank">Mike Mulshine</a>
+        is a composer-songwriter-performer and music technologist whose work
+        interrogates traditional musical relationships and centrally values the
+        expressive and cathartic aspects of creation.
+      </p>
+    </div>
+    <script></script>
+  </body>
+</html>
