@@ -203,6 +203,15 @@ anotheraudiofile-+;
   .out()
   </code>
 
+  <li>Example using local files (e.g. image or video):</li>
+
+  <code>
+s0.initImage(images["filename.jpg"]);
+  </code>
+  <code>
+osc(6).modulate(src(s0), 1).out(o0);
+  </code>
+    
   <li>Increase resolution of the Hydra sketch:</li>
   <code>
   setResolution(1600,900)
@@ -214,7 +223,7 @@ anotheraudiofile-+;
 <h3>Upload Audio or Images</h3>
 <ul>
   <li>Use file extensions: '.wav', '.aiff', '.jpg', '.png', 'webm', 'mp4';</li>
-  <li>You can use this files in connection with boxes: 'clouds & grains'; 'CQenze' and 'HYDRA BOX'!</li>
+  <li>You can use this files in connection within other boxes: 'clouds & grains'; 'CQenze' and 'HYDRA BOX'!</li>
 </ul>
 
 <h2>More Links and Inspiration</h2>
