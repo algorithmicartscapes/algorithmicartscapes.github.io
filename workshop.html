@@ -247,16 +247,34 @@ osc(6).modulate(src(s0), 1).out(o0);
 
   <code>
   function moveWords () {
+ <code>
     var everything = document.querySelectorAll('.wordMaps'), i;
+ </code>  
+ <code>
 	  for (i = 0; i < everything.length; ++i) {
+ </code>  
+ <code>
 	    everything[i].style.position = "absolute";
+ </code>  
+ <code>
       everything[i].style.top = Math.random() * 600 + 'px';
+ </code>  
+ <code>
             everything[i].style.left = Math.random() * 900 + 'px';
+ </code>  
+ <code>
             everything[i].style.transition = "1s ease-in-out";
+ </code>  
+ <code>
 	  }
+ </code>  
+ <code>
 	}
+ </code>  
+ <code>
 timing = setInterval(moveWords, 2000);
-  </code>
+ </code>  
+
   <p>Use the example below to stop the animation above:</p>
   <code>
   clearInterval(timing, 2000)
@@ -269,6 +287,8 @@ timing = setInterval(moveWords, 2000);
   <li> <a href="https://www.youtube.com/c/Eulerroom/videos" target="_blank">Live Streamed live coding performances Eulerroom</a></li>
 </ul>
 --> 
+
+<h3>THANK YOU ･ﾟ’★ ｡･:*:･ﾟ WE WELCOME FEEDBACK!</h3>
     
 <script></script>
 </body>
