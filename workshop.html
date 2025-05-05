@@ -103,14 +103,19 @@
   </head>
   <body>
 
-<h1>Algorithmic Artscape: a Platform for Exploring Distributed Community Creativity</</h1>
+<h1>Algorithmic Artscape: a Platform for Exploring Distributed Community Creativity</h1>
 
-<p>Welcome to...</p>
 <p>Link to workshop documentation:</p>
-<h3>algorithmic-scape.art/workshop.html</h3>
+<h2>algorithmic-scape.art/workshop.html</h2>
 <img src="https://raw.githubusercontent.com/algorithmicartscapes/algorithmicartscapes.github.io/refs/heads/main/QR-workshop.png" alt="QR code link to workshop" width="300" height="300"> 
- 
-<h2>WORKSHOP</h2>
+
+<h2>WHO WE ARE</h2>
+
+<p>Celeste Betancur Gutierrez is an audiovisual sotfware inventor, composer, and live coder who performs in venues from academic computer music halss to nightclubs all around the world. She is obsessed with dance, magic and music. Currently she is a Ph.D candidate at Stanford University's Center for Computer Research in Music and Acoustics (CCRMA). Web: https://www.celestebetancur.com/
+</p>
+<p>Joana Chicau is a designer and researcher — with a background in dance. She researches the intersection of the body with the designed and programmed environment, aiming at widening the ways in which digital sciences is presented and made accessible to the public.  Her practice and exploration interweaves web programming with choreography — from the making of online platforms to performances and workshops. She is a PhD candidate at the Creative Institute at the University of the Arts London. Web: https://joana.art </p>
+
+<h2>WORKSHOP PLAN</h2>
 
 <p>This workshop will introduce Algorithmic Artscape, a work-in-progress web-platform which contains two components:</p>
     <li>  a set of programming languages and tools for live coding audio and visuals, including a machine learning model.  </li>
@@ -124,9 +129,7 @@
   <li> produce code sketches and scores (translated to sound, images and/ or videos which can be exhibited in the online gallery space);  </li>
   <li> in addition participants will be invited to join the presentation included in the program;  </li>
 
-
-
-<h4>Participants are asked to bring:</h4>
+<h4>Participants asked to bring:</h4>
 <li> their own laptop; </li>
 <li> code editor installed in their laptop (e.g. pulsar); </li>
 <li> headphones; </li>
@@ -134,7 +137,7 @@
 
 <h1>｡･:*:･ﾟ’★ ｡･:*:･ﾟ’★ ｡･:*:･ﾟ’★ ｡･:*:･ﾟ’★</h1>
     
-<h2><a href="https://algorithmic-scape.art/" target="_blank">CLICK HERE</a> to access Algorithmic Artscape! </h2>
+<h2><a href="https://algorithmic-scape.art/" target="_blank">CLICK HERE to access Algorithmic Artscape! </a></h2>
 
 <h1>｡･:*:･ﾟ’★ ｡･:*:･ﾟ’★ ｡･:*:･ﾟ’★ ｡･:*:･ﾟ’★</h1>
 
@@ -231,21 +234,42 @@ osc(6).modulate(src(s0), 1).out(o0);
   <li>You can use this files in connection within other boxes: 'clouds & grains'; 'CQenze' and 'HYDRA BOX'!</li>
 </ul>
 
+
+<h4><i>ADVANCED TIPS:</i></h4>
+
+<h3>HYDRA BOX</h3>
+<p>You can write JavaScript function to animate various elements of the platform.</p>
+<p>For example you can change the HTML element "body":</p>
+  <code>
+    document.querySelector("body").style.transform="rotate3d(1, 2.0, 3.0, 10deg)";
+  </code>  
+<p>Use the example below to change the text display relating to the Murmurings Box:</p>
+
+  <code>
+  function moveWords () {
+    var everything = document.querySelectorAll('.wordMaps'), i;
+	  for (i = 0; i < everything.length; ++i) {
+	    everything[i].style.position = "absolute";
+      everything[i].style.top = Math.random() * 600 + 'px';
+            everything[i].style.left = Math.random() * 900 + 'px';
+            everything[i].style.transition = "1s ease-in-out";
+	  }
+	}
+timing = setInterval(moveWords, 2000);
+  </code>
+  <p>Use the example below to stop the animation above:</p>
+  <code>
+  clearInterval(timing, 2000)
+  </code>
+
+<!-- 
 <h2>More Links and Inspiration</h2>
 <ul>
   <li> <a href="https://blog.toplap.org/" target="_blank">TopLap</a></li>
   <li> <a href="https://www.youtube.com/c/Eulerroom/videos" target="_blank">Live Streamed live coding performances Eulerroom</a></li>
-  <li> <a href="https://creativecodingutrecht.nl/index-articles" target="_blank">Interviews with various live coders </a></li>
-  <li> <a href="" target="_blank"></a></li>
-
 </ul>
-
-<h2>BIOS</h2>
-
-<p>Celeste Betancur Gutierrez is an audiovisual sotfware inventor, composer, and live coder who performs in venues from academic computer music halss to nightclubs all around the world. She is obsessed with dance, magic and music. Currently she is a Ph.D candidate at Stanford University's Center for Computer Research in Music and Acoustics (CCRMA). Web: https://www.celestebetancur.com/
-</p>
-<p>Joana Chicau is a designer and researcher — with a background in dance. She researches the intersection of the body with the designed and programmed environment, aiming at widening the ways in which digital sciences is presented and made accessible to the public.  Her practice and exploration interweaves web programming with choreography — from the making of online platforms to performances and workshops. She is a PhD candidate at the Creative Institute at the University of the Arts London. Web: https://joana.art </p>
-
+--> 
+    
 <script></script>
 </body>
 </html>
